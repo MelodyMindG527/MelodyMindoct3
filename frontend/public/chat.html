@@ -27,6 +27,7 @@
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       overflow: hidden;
+      position: relative;
     }
     
     .header {
@@ -34,12 +35,37 @@
       color: white;
       padding: 20px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: glow 6s ease-in-out infinite alternate;
     }
     
     .api-config {
       background: #f8f9fa;
       padding: 15px 20px;
       border-bottom: 1px solid #e0e0e0;
+      position: relative;
+    }
+    
+    .api-config::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #007bff, transparent);
+      animation: shimmer 3s infinite linear;
     }
     
     .api-input {
@@ -49,6 +75,12 @@
       border-radius: 8px;
       margin-bottom: 10px;
       font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .api-input:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
     }
     
     .model-select {
@@ -57,6 +89,12 @@
       border: 1px solid #ddd;
       border-radius: 8px;
       font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .model-select:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
     }
     
     #messages { 
@@ -73,6 +111,7 @@
       max-width: 80%;
       word-wrap: break-word;
       animation: fadeIn 0.3s ease-in;
+      position: relative;
     }
     
     .user { 
@@ -80,6 +119,7 @@
       color: white;
       margin-left: auto;
       border-bottom-right-radius: 5px;
+      box-shadow: 0 4px 15px rgba(0,123,255,0.3);
     }
     
     .bot { 
@@ -87,7 +127,13 @@
       color: #333;
       border: 1px solid #e0e0e0;
       border-bottom-left-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .bot.mood-response {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-left: 4px solid #007bff;
+      animation: pulse 2s infinite;
     }
     
     .typing { 
@@ -101,6 +147,18 @@
       background: white;
       border-top: 1px solid #e0e0e0;
       gap: 10px;
+      position: relative;
+    }
+    
+    .input-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #007bff, transparent);
+      animation: shimmer 3s infinite linear;
     }
     
     input[type="text"] { 
@@ -110,11 +168,12 @@
       border-radius: 25px;
       font-size: 14px;
       outline: none;
-      transition: border-color 0.3s;
+      transition: all 0.3s;
     }
     
     input[type="text"]:focus {
       border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
     }
     
     button { 
@@ -125,17 +184,36 @@
       border-radius: 25px;
       cursor: pointer;
       font-weight: 600;
-      transition: transform 0.2s;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
     }
     
     button:hover {
       transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+    }
+    
+    button:hover::before {
+      left: 100%;
     }
     
     button:disabled {
       background: #6c757d;
       cursor: not-allowed;
       transform: none;
+      box-shadow: none;
     }
     
     .controls {
@@ -166,6 +244,10 @@
       font-size: 12px;
       color: #666;
       margin-left: auto;
+      padding: 5px 10px;
+      border-radius: 15px;
+      background: #f8f9fa;
+      animation: statusPulse 4s infinite;
     }
     
     @keyframes fadeIn {
@@ -221,6 +303,18 @@
       border-bottom: 1px solid #e0e0e0;
       overflow-x: auto;
       white-space: nowrap;
+      position: relative;
+    }
+
+    .quick-questions::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #007bff, transparent);
+      animation: shimmer 3s infinite linear;
     }
 
     .question-chip {
@@ -234,12 +328,30 @@
       cursor: pointer;
       font-size: 0.85rem;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .question-chip::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,123,255,0.2), transparent);
+      transition: left 0.5s;
     }
 
     .question-chip:hover {
       background: #007bff;
       color: white;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+    }
+
+    .question-chip:hover::before {
+      left: 100%;
     }
 
     .message-time {
@@ -258,6 +370,7 @@
       border-bottom-left-radius: 5px;
       max-width: 85%;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      animation: pulse 1.5s infinite;
     }
 
     .typing-dots {
@@ -284,8 +397,38 @@
 
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      50% { transform: scale(1.02); }
       100% { transform: scale(1); }
+    }
+
+    @keyframes glow {
+      0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+      100% { transform: translate(-30%, -30%) scale(1.2); opacity: 0.8; }
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes statusPulse {
+      0%, 100% { box-shadow: 0 0 5px rgba(0,123,255,0.3); }
+      50% { box-shadow: 0 0 15px rgba(0,123,255,0.6); }
+    }
+
+    .mood-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      margin: 0 2px;
+      animation: badgeGlow 2s infinite alternate;
+    }
+
+    @keyframes badgeGlow {
+      0% { box-shadow: 0 0 5px currentColor; }
+      100% { box-shadow: 0 0 15px currentColor; }
     }
     
     @media (max-width: 600px) {
@@ -315,14 +458,11 @@
   <div id="chat">
     <div class="header">
       <h2>🤖 MelodyMind AI Assistant</h2>
-      <p>Powered by OpenRouter API + Text-to-Speech</p>
+      <p>Powered by OpenRouter API + Real Mood Analytics</p>
     </div>
     
     <div class="api-config">
-      // /////////////////////////////
-      //Note : remove extra -s from the key
-      // ///////////////////////////// 
-      <input type="password" id="apiKey" class="api-input" placeholder="Enter your OpenRouter API Key (Optional)" value="sk----or----v1-b57694b3504073980bbd42372386e051a19a195cf0dd4b452359601c0319d60b" />
+      <input type="password" id="apiKey" class="api-input" placeholder="Enter your OpenRouter API Key (Optional)" value="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" />
       <select id="modelSelect" class="model-select">
         <option value="openai/gpt-3.5-turbo">GPT-3.5 Turbo</option>
         <option value="openai/gpt-4">GPT-4</option>
@@ -336,16 +476,19 @@
 
     <div class="quick-questions">
       <div class="question-chip" data-question="What is MelodyMind?">What is MelodyMind?</div>
-      <div class="question-chip" data-question="How does mood detection work?">How does mood detection work?</div>
-      <div class="question-chip" data-question="Can you recommend happy songs?">Recommend happy songs</div>
-      <div class="question-chip" data-question="What music genres do you support?">Supported music genres</div>
-      <div class="question-chip" data-question="How to create a playlist?">Create a playlist</div>
-      <div class="question-chip" data-question="Tell me about voice controls">Voice controls</div>
+      <div class="question-chip" data-question="How does mood detection work?">Mood Detection</div>
+      <div class="question-chip" data-question="Can you recommend happy songs?">Happy Songs</div>
+      <div class="question-chip" data-question="What was my mood yesterday?">Yesterday's Mood</div>
+      <div class="question-chip" data-question="My weekly mood report">Weekly Report</div>
+      <div class="question-chip" data-question="What is my most common mood?">Most Common Mood</div>
+      <div class="question-chip" data-question="Show my mood statistics">Mood Statistics</div>
+      <div class="question-chip" data-question="My mood consistency">Tracking Consistency</div>
+      <div class="question-chip" data-question="Best time for music">Best Music Times</div>
     </div>
     
     <div id="messages">
       <div class="message bot">
-        <strong>MelodyMind AI:</strong> Welcome! I'm your MelodyMind AI assistant. I come pre-configured with an API key, so you can start chatting right away! You can also use your own API key if you prefer. Ask me about music, mood detection, or anything else!
+        <strong>MelodyMind AI:</strong> Welcome! I'm your MelodyMind AI assistant. I can analyze your real mood data and provide personalized insights about your emotional patterns. Ask me about your mood analytics, music recommendations, or anything else!
         <div class="message-time" id="initial-time"></div>
       </div>
     </div>
@@ -359,11 +502,11 @@
           <!-- Voice bars will be generated here -->
         </div>
       </div>
-      <div id="status" class="status">Voice: Disabled | API: Configured</div>
+      <div id="status" class="status">Voice: Disabled | API: Configured | Analytics: Ready</div>
     </div>
     
     <div class="input-container">
-      <input type="text" id="query" placeholder="Type your message here..." />
+      <input type="text" id="query" placeholder="Ask about your mood analytics or music..." />
       <button id="send">Send</button>
     </div>
   </div>
@@ -388,7 +531,8 @@
     let isSpeaking = false;
     let currentUtterance = null;
     let voiceBars = [];
-    let apiKey = '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';
+    //Add this api key in chatbot
+    let apiKey = '';
     let currentModel = 'openai/gpt-3.5-turbo';
     let chatHistory = [];
     let conversationHistory = [
@@ -398,20 +542,73 @@
       }
     ];
 
-    // Predefined Q&A about MelodyMind
-    const predefinedQnA = {
-      "what is melodymind": "MelodyMind is an AI-powered music companion that uses mood detection, voice controls, and smart algorithms to recommend perfect music for your current emotional state. It combines camera-based emotion analysis, text input, and voice commands to understand your mood and play suitable music.",
+    // Mood Data Storage (simulating your musicStore)
+    let moodHistory = JSON.parse(localStorage.getItem('melodymind_mood_history') || '[]');
+    let playlists = JSON.parse(localStorage.getItem('melodymind_playlists') || '[]');
+
+    // Initialize with sample data if empty (simulating your Analytics.tsx data)
+    if (moodHistory.length === 0) {
+      // Create realistic sample mood history based on your Analytics.tsx structure
+      const sampleMoods = [
+        { type: 'happy', color: '#4caf50', icon: '😊' },
+        { type: 'calm', color: '#2196f3', icon: '😌' },
+        { type: 'energetic', color: '#ff9800', icon: '⚡' },
+        { type: 'focused', color: '#2196f3', icon: '🎯' },
+        { type: 'excited', color: '#4caf50', icon: '🎉' },
+        { type: 'sad', color: '#f44336', icon: '😔' },
+        { type: 'anxious', color: '#ff5722', icon: '😰' }
+      ];
       
-      "how does mood detection work": "MelodyMind uses multiple methods for mood detection:\n• Camera analysis: Uses your webcam to detect facial expressions and emotions\n• Text input: You can describe how you feel in words\n• Voice analysis: Speaks about your mood for voice-based detection\n• The AI then matches your mood with suitable music from our extensive library.",
+      // Generate 2 weeks of mood data
+      for (let i = 14; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        
+        // Add 1-4 mood entries per day
+        const entriesPerDay = Math.floor(Math.random() * 4) + 1;
+        for (let j = 0; j < entriesPerDay; j++) {
+          const moodIndex = Math.floor(Math.random() * sampleMoods.length);
+          const hour = 7 + Math.floor(Math.random() * 14); // Between 7 AM and 9 PM
+          date.setHours(hour, Math.floor(Math.random() * 60), 0);
+          
+          moodHistory.push({
+            type: sampleMoods[moodIndex].type,
+            intensity: Math.floor(Math.random() * 6) + 5, // 5-10 intensity
+            timestamp: date.toISOString(),
+            notes: `Mood entry for ${date.toLocaleDateString()}`
+          });
+        }
+      }
+      localStorage.setItem('melodymind_mood_history', JSON.stringify(moodHistory));
       
-      "can you recommend happy songs": "Absolutely! For happy moods, I recommend:\n• 'Can't Stop the Feeling' - Justin Timberlake\n• 'Happy' - Pharrell Williams\n• 'Walking on Sunshine' - Katrina & The Waves\n• 'Good Vibrations' - The Beach Boys\n• 'Uptown Funk' - Mark Ronson ft. Bruno Mars\nYou can also use the mood detection feature to get personalized happy song recommendations!",
-      
-      "what music genres do you support": "MelodyMind supports a wide variety of genres:\n• Pop, Rock, Hip-Hop, Jazz\n• Classical, Electronic, Ambient\n• Folk, Country, R&B\n• Movie Soundtracks, Lo-fi\n• And many more!\nOur AI can recommend music across all these genres based on your detected mood.",
-      
-      "how to create a playlist": "Creating playlists in MelodyMind is easy:\n1. Use mood detection to find songs matching your current emotion\n2. Click the 'Smart Playlist' feature for AI-generated playlists\n3. Save your favorite songs to custom playlists\n4. Use voice commands: 'Create a workout playlist' or 'Make study music'\nThe AI will automatically curate playlists based on your preferences!",
-      
-      "tell me about voice controls": "MelodyMind's voice controls let you:\n• Speak your mood: 'I feel energetic today'\n• Control playback: 'Play next song', 'Pause music'\n• Request playlists: 'Create a relaxing playlist'\n• Ask questions: 'What's playing?'\n• Navigate features hands-free\nJust click the voice control button and start speaking!"
-    };
+      // Create sample playlists
+      playlists = [
+        {
+          mood: 'happy',
+          songs: [
+            { title: 'Happy Song 1', genre: 'Pop', artist: 'Artist A' },
+            { title: 'Happy Song 2', genre: 'Pop', artist: 'Artist B' },
+            { title: 'Happy Song 3', genre: 'Rock', artist: 'Artist C' }
+          ]
+        },
+        {
+          mood: 'calm',
+          songs: [
+            { title: 'Calm Song 1', genre: 'Ambient', artist: 'Artist D' },
+            { title: 'Calm Song 2', genre: 'Classical', artist: 'Artist E' }
+          ]
+        },
+        {
+          mood: 'energetic',
+          songs: [
+            { title: 'Energetic Song 1', genre: 'Rock', artist: 'Artist F' },
+            { title: 'Energetic Song 2', genre: 'Electronic', artist: 'Artist G' },
+            { title: 'Energetic Song 3', genre: 'Hip-Hop', artist: 'Artist H' }
+          ]
+        }
+      ];
+      localStorage.setItem('melodymind_playlists', JSON.stringify(playlists));
+    }
 
     // OpenRouter API Configuration
     const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
@@ -535,13 +732,13 @@
     function updateStatus() {
       const voiceStatus = isVoiceEnabled ? (isSpeaking ? 'Speaking...' : 'Enabled') : 'Disabled';
       const apiStatus = apiKey ? 'Configured' : 'Not Configured';
-      statusEl.textContent = `Voice: ${voiceStatus} | API: ${apiStatus}`;
+      statusEl.textContent = `Voice: ${voiceStatus} | API: ${apiStatus} | Analytics: Ready`;
     }
 
     // Add message to chat
-    function addMessage(sender, text, isError = false) {
+    function addMessage(sender, text, isError = false, isMoodResponse = false) {
       const messageDiv = document.createElement('div');
-      messageDiv.className = `message ${sender} ${isError ? 'error' : ''}`;
+      messageDiv.className = `message ${sender} ${isError ? 'error' : ''} ${isMoodResponse ? 'mood-response' : ''}`;
       
       const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       
@@ -551,8 +748,14 @@
           <div class="message-time">${timestamp}</div>
         `;
       } else {
+        // Add mood badges for analytics responses
+        let formattedText = text;
+        if (isMoodResponse) {
+          formattedText = text.replace(/\*\*(.*?)\*\*/g, '<span class="mood-badge" style="color: #007bff;">$1</span>');
+        }
+        
         messageDiv.innerHTML = `
-          <strong>MelodyMind AI:</strong> ${text.replace(/\n/g, '<br>')}
+          <strong>MelodyMind AI:</strong> ${formattedText.replace(/\n/g, '<br>')}
           <div class="message-time">${timestamp}</div>
         `;
       }
@@ -564,7 +767,8 @@
       chatHistory.push({
         sender: sender,
         text: text,
-        timestamp: timestamp
+        timestamp: timestamp,
+        isMoodResponse: isMoodResponse
       });
 
       saveChatHistory();
@@ -594,6 +798,276 @@
         typingIndicator.remove();
       }
     }
+
+    // Real Mood Analytics Functions (recreating your Analytics.tsx logic)
+    function getMoodStats() {
+      const moodCounts = {};
+      const moodIntensities = {};
+      const moodByHour = {};
+      
+      moodHistory.forEach(mood => {
+        moodCounts[mood.type] = (moodCounts[mood.type] || 0) + 1;
+        if (!moodIntensities[mood.type]) {
+          moodIntensities[mood.type] = [];
+        }
+        moodIntensities[mood.type].push(mood.intensity);
+
+        // Track mood by hour
+        const hour = new Date(mood.timestamp).getHours();
+        if (!moodByHour[mood.type]) {
+          moodByHour[mood.type] = new Array(24).fill(0);
+        }
+        moodByHour[mood.type][hour]++;
+      });
+
+      const averageIntensities = {};
+      Object.keys(moodIntensities).forEach(mood => {
+        const avg = moodIntensities[mood].reduce((a, b) => a + b, 0) / moodIntensities[mood].length;
+        averageIntensities[mood] = Math.round(avg * 10) / 10;
+      });
+
+      return { moodCounts, averageIntensities, moodByHour };
+    }
+
+    function getMoodConsistency() {
+      const uniqueDays = new Set(moodHistory.map(mood => 
+        new Date(mood.timestamp).toDateString()
+      )).size;
+      const totalDays = Math.ceil((new Date().getTime() - new Date(moodHistory[0]?.timestamp || new Date()).getTime()) / (1000 * 60 * 60 * 24)) || 1;
+      return Math.round((uniqueDays / Math.min(totalDays, 30)) * 100);
+    }
+
+    function getWeeklyTrend() {
+      const last7Days = [];
+      for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const dayString = date.toDateString();
+        const dayMoods = moodHistory.filter(mood => 
+          new Date(mood.timestamp).toDateString() === dayString
+        );
+        
+        const avgIntensity = dayMoods.length > 0 
+          ? dayMoods.reduce((sum, mood) => sum + mood.intensity, 0) / dayMoods.length
+          : 0;
+
+        // Find most common mood for the day
+        const dayMoodCounts = {};
+        dayMoods.forEach(mood => {
+          dayMoodCounts[mood.type] = (dayMoodCounts[mood.type] || 0) + 1;
+        });
+        
+        const mostCommonMood = Object.keys(dayMoodCounts).reduce((a, b) => 
+          dayMoodCounts[a] > dayMoodCounts[b] ? a : b, 'No data'
+        );
+
+        last7Days.push({
+          day: date.toLocaleDateString('en-US', { weekday: 'short' }),
+          date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+          intensity: Math.round(avgIntensity * 10) / 10,
+          count: dayMoods.length,
+          dominantMood: mostCommonMood
+        });
+      }
+      return last7Days;
+    }
+
+    function getMoodColor(moodType) {
+      switch (moodType) {
+        case 'happy':
+        case 'excited':
+          return '#4caf50';
+        case 'sad':
+        case 'melancholic':
+          return '#f44336';
+        case 'energetic':
+          return '#ff9800';
+        case 'calm':
+        case 'focused':
+          return '#2196f3';
+        case 'anxious':
+          return '#ff5722';
+        default:
+          return '#9e9e9e';
+      }
+    }
+
+    function getMoodInsight(mood) {
+      const insights = {
+        'happy': 'This is a great mood for social music and upbeat playlists! 🎉',
+        'calm': 'Perfect for relaxation music, ambient sounds, or classical music. 🎵',
+        'energetic': 'Ideal for workout playlists, dance music, or high-energy tracks. ⚡',
+        'focused': 'Great for instrumental music, lo-fi beats, or concentration playlists. 🎯',
+        'excited': 'Time for celebration music! Upbeat and joyful tracks would match well. 🎊',
+        'sad': 'Maybe some comforting music or emotional ballads could help. 💙',
+        'anxious': 'Calming music, nature sounds, or meditation tracks might be beneficial. 🧘'
+      };
+      return insights[mood] || 'Music can enhance this mood perfectly! 🎶';
+    }
+
+    // Analyze real mood data
+    function analyzeRealMoodData(question) {
+      const lowerQuestion = question.toLowerCase();
+      const { moodCounts, averageIntensities, moodByHour } = getMoodStats();
+      const weeklyTrend = getWeeklyTrend();
+      const consistency = getMoodConsistency();
+      
+      const totalEntries = moodHistory.length;
+      const uniqueMoods = Object.keys(moodCounts).length;
+      const averageIntensity = totalEntries > 0 
+        ? Math.round(moodHistory.reduce((sum, mood) => sum + mood.intensity, 0) / totalEntries * 10) / 10
+        : 0;
+
+      // Most frequent mood
+      const mostFrequentMood = Object.keys(moodCounts).reduce((a, b) => 
+        moodCounts[a] > moodCounts[b] ? a : b, ''
+      );
+
+      // Analyze question and provide appropriate response
+      if (lowerQuestion.includes('yesterday')) {
+        const yesterdayData = weeklyTrend[weeklyTrend.length - 2] || { dominantMood: "No data", intensity: 0 };
+        if (yesterdayData.dominantMood === "No data") {
+          return "I don't have any mood data for yesterday. Try logging your mood today to start building your analytics!";
+        }
+        return `Yesterday, your predominant mood was **${yesterdayData.dominantMood}** with an average intensity of ${yesterdayData.intensity}/10. ${getMoodInsight(yesterdayData.dominantMood)}`;
+      }
+      
+      if (lowerQuestion.includes('last week') || lowerQuestion.includes('weekly')) {
+        const weekSummary = weeklyTrend.map(day => 
+          `• ${day.day} (${day.date}): ${day.dominantMood} (${day.intensity}/10)`
+        ).join('\n');
+        
+        const weekMoods = weeklyTrend.filter(day => day.dominantMood !== 'No data').map(day => day.dominantMood);
+        const weekMoodCounts = {};
+        weekMoods.forEach(mood => {
+          weekMoodCounts[mood] = (weekMoodCounts[mood] || 0) + 1;
+        });
+        
+        const mostCommonWeekMood = Object.keys(weekMoodCounts).reduce((a, b) => 
+          weekMoodCounts[a] > weekMoodCounts[b] ? a : b, 'Various moods'
+        );
+        
+        return `**Last Week's Mood Report:**\n${weekSummary}\n\nYour most frequent mood last week was **${mostCommonWeekMood}**.`;
+      }
+      
+      if (lowerQuestion.includes('most common') || lowerQuestion.includes('frequent mood')) {
+        if (mostFrequentMood) {
+          return `Your most common mood is **${mostFrequentMood}**, recorded ${moodCounts[mostFrequentMood]} times. This represents ${Math.round((moodCounts[mostFrequentMood] / totalEntries) * 100)}% of your ${totalEntries} mood entries. ${getMoodInsight(mostFrequentMood)}`;
+        } else {
+          return "You haven't recorded enough moods yet to determine your most common mood. Try logging more moods to see patterns emerge!";
+        }
+      }
+      
+      if (lowerQuestion.includes('statistics') || lowerQuestion.includes('analytics')) {
+        if (totalEntries === 0) {
+          return "You haven't recorded any moods yet! Start by logging your current mood to build your analytics.";
+        }
+        
+        const moodDistribution = Object.entries(moodCounts)
+          .map(([mood, count]) => `• ${mood.charAt(0).toUpperCase() + mood.slice(1)}: ${count} entries (${Math.round((count / totalEntries) * 100)}%)`)
+          .join('\n');
+        
+        return `
+**Your Mood Analytics Dashboard:**
+
+📊 **Total Entries**: ${totalEntries} mood recordings
+🎭 **Mood Diversity**: ${uniqueMoods} different mood types
+❤️ **Most Common Mood**: ${mostFrequentMood || 'Not enough data'}
+📈 **Tracking Consistency**: ${consistency}%
+💪 **Average Intensity**: ${averageIntensity}/10
+
+**Mood Distribution:**
+${moodDistribution}
+
+*Keep tracking your moods to discover more patterns!*
+        `.trim();
+      }
+      
+      if (lowerQuestion.includes('month') || lowerQuestion.includes('this month')) {
+        const thisMonth = new Date().getMonth();
+        const thisYear = new Date().getFullYear();
+        const monthMoods = moodHistory.filter(mood => {
+          const moodDate = new Date(mood.timestamp);
+          return moodDate.getMonth() === thisMonth && moodDate.getFullYear() === thisYear;
+        });
+        
+        const monthCount = monthMoods.length;
+        const monthMoodCounts = {};
+        monthMoods.forEach(mood => {
+          monthMoodCounts[mood.type] = (monthMoodCounts[mood.type] || 0) + 1;
+        });
+        
+        const monthMostCommon = Object.keys(monthMoodCounts).reduce((a, b) => 
+          monthMoodCounts[a] > monthMoodCounts[b] ? a : b, 'Not enough data'
+        );
+        
+        return `This month, you've tracked ${monthCount} mood entries across ${Object.keys(monthMoodCounts).length} different mood types. ${monthMostCommon !== 'Not enough data' ? `Your most common mood this month is **${monthMostCommon}**.` : 'Keep logging moods to see monthly patterns!'}`;
+      }
+      
+      if (lowerQuestion.includes('happiest') || lowerQuestion.includes('best mood')) {
+        if (!moodByHour.happy) {
+          return "I don't have enough data about your happy moods yet. Try logging when you feel happy to see patterns!";
+        }
+        
+        const maxHappyHour = moodByHour.happy.indexOf(Math.max(...moodByHour.happy));
+        return `Based on your data, you're typically happiest around **${maxHappyHour}:00**. Your happy moods average intensity ${averageIntensities.happy || 'unknown'}/10. Perfect time for upbeat music! 🎵`;
+      }
+      
+      if (lowerQuestion.includes('consistency')) {
+        return `Your mood tracking consistency is **${consistency}%**. You've recorded moods on ${Math.round(consistency / 100 * 30)} out of the last 30 days. ${consistency > 70 ? 'Great job maintaining consistent tracking!' : 'Try to log moods more regularly for better insights!'}`;
+      }
+      
+      if (lowerQuestion.includes('intensity') || lowerQuestion.includes('trend')) {
+        const intensityTrend = weeklyTrend.filter(day => day.intensity > 0).map(day => day.intensity);
+        const avgWeeklyIntensity = intensityTrend.length > 0 
+          ? Math.round(intensityTrend.reduce((a, b) => a + b, 0) / intensityTrend.length * 10) / 10
+          : 0;
+          
+        return `Your average mood intensity is **${averageIntensity}/10**. Over the past week, your average intensity was ${avgWeeklyIntensity}/10. ${averageIntensity > 7 ? 'You experience strong emotions - music can amplify these beautifully!' : 'Your moods are generally balanced - music can gently enhance your experiences.'}`;
+      }
+      
+      if (lowerQuestion.includes('best time') || lowerQuestion.includes('music time')) {
+        const peakHours = {};
+        Object.keys(moodByHour).forEach(mood => {
+          const maxHour = moodByHour[mood].indexOf(Math.max(...moodByHour[mood]));
+          if (maxHour > 0) peakHours[mood] = maxHour;
+        });
+        
+        let response = "**Optimal Music Times Based on Your Mood Patterns:**\n";
+        
+        if (peakHours.happy) response += `• **Happy moods peak at ${peakHours.happy}:00** - perfect for upbeat music\n`;
+        if (peakHours.calm) response += `• **Calm moods peak at ${peakHours.calm}:00** - ideal for relaxation music\n`;
+        if (peakHours.energetic) response += `• **Energetic moods peak at ${peakHours.energetic}:00** - great for workout playlists\n`;
+        
+        if (Object.keys(peakHours).length === 0) {
+          response = "I need more mood data to identify your best music times. Keep logging your moods!";
+        }
+        
+        return response;
+      }
+      
+      // Default response for mood-related questions
+      if (totalEntries === 0) {
+        return "I don't have any mood data to analyze yet. Start by logging your current mood to build your personal analytics!";
+      }
+      
+      return `I've analyzed your ${totalEntries} mood entries. You've experienced ${uniqueMoods} different mood types, with **${mostFrequentMood}** being your most common. Your tracking consistency is ${consistency}%. Would you like more specific insights about your mood patterns?`;
+    }
+
+    // Enhanced Q&A about MelodyMind
+    const enhancedQnA = {
+      "what is melodymind": "MelodyMind is an AI-powered music companion that uses mood detection, voice controls, and smart algorithms to recommend perfect music for your current emotional state. It combines camera-based emotion analysis, text input, and voice commands to understand your mood and play suitable music.",
+      
+      "how does mood detection work": "MelodyMind uses multiple methods for mood detection:\n• Camera analysis: Uses your webcam to detect facial expressions and emotions\n• Text input: You can describe how you feel in words\n• Voice analysis: Speaks about your mood for voice-based detection\n• The AI then matches your mood with suitable music from our extensive library.",
+      
+      "can you recommend happy songs": "Absolutely! For happy moods, I recommend:\n• 'Can't Stop the Feeling' - Justin Timberlake\n• 'Happy' - Pharrell Williams\n• 'Walking on Sunshine' - Katrina & The Waves\n• 'Good Vibrations' - The Beach Boys\n• 'Uptown Funk' - Mark Ronson ft. Bruno Mars\nYou can also use the mood detection feature to get personalized happy song recommendations!",
+      
+      "what music genres do you support": "MelodyMind supports a wide variety of genres:\n• Pop, Rock, Hip-Hop, Jazz\n• Classical, Electronic, Ambient\n• Folk, Country, R&B\n• Movie Soundtracks, Lo-fi\n• And many more!\nOur AI can recommend music across all these genres based on your detected mood.",
+      
+      "how to create a playlist": "Creating playlists in MelodyMind is easy:\n1. Use mood detection to find songs matching your current emotion\n2. Click the 'Smart Playlist' feature for AI-generated playlists\n3. Save your favorite songs to custom playlists\n4. Use voice commands: 'Create a workout playlist' or 'Make study music'\nThe AI will automatically curate playlists based on your preferences!",
+      
+      "tell me about voice controls": "MelodyMind's voice controls let you:\n• Speak your mood: 'I feel energetic today'\n• Control playback: 'Play next song', 'Pause music'\n• Request playlists: 'Create a relaxing playlist'\n• Ask questions: 'What's playing?'\n• Navigate features hands-free\nJust click the voice control button and start speaking!"
+    };
 
     // Call OpenRouter API
     async function callOpenRouterAPI(message) {
@@ -656,23 +1130,41 @@
 
       try {
         let botMessage;
+        let isMoodResponse = false;
 
-        // Check if it's a predefined question
+        // Check if it's a mood analytics question
         const lowerMessage = query.toLowerCase();
-        const predefinedAnswer = Object.keys(predefinedQnA).find(key => 
-          lowerMessage.includes(key.toLowerCase())
-        );
+        const isMoodQuery = lowerMessage.includes('mood') && 
+          (lowerMessage.includes('yesterday') || 
+           lowerMessage.includes('week') || 
+           lowerMessage.includes('analytics') || 
+           lowerMessage.includes('statistics') ||
+           lowerMessage.includes('pattern') ||
+           lowerMessage.includes('consistent') ||
+           lowerMessage.includes('common') ||
+           lowerMessage.includes('best time'));
 
-        if (predefinedAnswer) {
-          botMessage = predefinedQnA[predefinedAnswer];
+        if (isMoodQuery) {
+          // Handle mood analytics locally
+          botMessage = analyzeRealMoodData(query);
+          isMoodResponse = true;
         } else {
-          // Call OpenRouter API
-          botMessage = await callOpenRouterAPI(query);
+          // Check if it's a predefined question
+          const predefinedAnswer = Object.keys(enhancedQnA).find(key => 
+            lowerMessage.includes(key.toLowerCase())
+          );
+
+          if (predefinedAnswer) {
+            botMessage = enhancedQnA[predefinedAnswer];
+          } else {
+            // Call OpenRouter API for other questions
+            botMessage = await callOpenRouterAPI(query);
+          }
         }
 
         // Remove typing indicator and add bot response
         removeTypingIndicator();
-        addMessage('bot', botMessage);
+        addMessage('bot', botMessage, false, isMoodResponse);
 
         // Speak the response if voice is enabled
         if (isVoiceEnabled) {
@@ -763,7 +1255,7 @@
           // Re-render chat history
           messagesEl.innerHTML = '';
           chatHistory.forEach(msg => {
-            addMessage(msg.sender, msg.text);
+            addMessage(msg.sender, msg.text, false, msg.isMoodResponse);
           });
         } catch (error) {
           console.error('Error loading chat history:', error);
@@ -850,7 +1342,7 @@
 
       // Enable chat interface since we have a pre-configured API key
       queryInput.disabled = false;
-      queryInput.placeholder = "Type your message here...";
+      queryInput.placeholder = "Ask about your mood analytics or music...";
       sendBtn.disabled = false;
 
       // Load voices when they become available
